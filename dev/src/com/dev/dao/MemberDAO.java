@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.dev.vo.MemberVO;
 
@@ -166,5 +167,40 @@ public class MemberDAO {
 		} finally {
 			close(conn, pstmt);
 		}
+	}
+	
+	
+	public ArrayList<MemberVO> memberList() {
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		MemberVO member = null;
+		
+		try {
+			conn = connect();
+			pstmt = conn.prepareStatement("SELECT * FROM MEMBER");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				member = new MemberVO();
+				member.setId(rs.getString("ID"));
+				member.setPasswd(rs.getString("PASSWD"));
+				member.setName(rs.getString("NAME"));
+				member.setMail(rs.getString("MAIL"));
+				
+				list.add(member);
+			}
+			
+		} catch(Exception ex) {
+			System.out.println("오류 발생 : " + ex);
+			
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		
+		return list;
 	}
 }
