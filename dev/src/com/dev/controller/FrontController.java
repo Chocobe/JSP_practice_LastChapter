@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// 프론트 컨트롤러
 public class FrontController extends HttpServlet {
 	private static final long serialVersionID = 1L;
 	String charset = null;
@@ -31,7 +32,7 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) 
 					throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding(charset);
 		
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();

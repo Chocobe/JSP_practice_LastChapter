@@ -93,4 +93,59 @@ public class MemberDAO {
 			close(conn, pstmt);
 		}
 	}
+	
+	
+	public MemberVO memberSearch(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		MemberVO member = null;
+		
+		try {
+			conn = connect();
+			pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE ID=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				member = new MemberVO();
+				member.setId(rs.getString("ID"));
+				member.setPasswd(rs.getString("PASSWD"));
+				member.setName(rs.getString("NAME"));
+				member.setMail(rs.getString("MAIL"));
+			}
+			
+		} catch(Exception ex) {
+			System.out.println(ex);
+			
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		
+		return member;
+	}
+	
+	
+	public void memberUpdate(MemberVO member) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = connect();
+			pstmt = conn.prepareStatement("UPDATE MEMBER SET PASSWD=?, NAME=?, MAIL=? WHERE ID=?");
+			pstmt.setString(1, member.getPasswd());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getMail());
+			pstmt.setString(4, member.getId());
+			
+			pstmt.executeUpdate();
+			
+		} catch(Exception ex) {
+			System.out.println("오류 발생 : " + ex);
+			
+		} finally {
+			close(conn, pstmt);
+		}
+	}
 }

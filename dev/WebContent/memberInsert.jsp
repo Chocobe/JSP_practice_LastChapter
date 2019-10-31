@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"
 %>
 
+<!-- 회원가입 뷰 -->
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
