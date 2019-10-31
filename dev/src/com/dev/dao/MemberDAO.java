@@ -148,4 +148,23 @@ public class MemberDAO {
 			close(conn, pstmt);
 		}
 	}
+	
+	
+	public void memberDelete(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = connect();
+			pstmt = conn.prepareStatement("DELETE FROM MEMBER WHERE ID=?");
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			
+		} catch(Exception ex) {
+			System.out.println("오류 발생 : " + ex);
+			
+		} finally {
+			close(conn, pstmt);
+		}
+	}
 }
