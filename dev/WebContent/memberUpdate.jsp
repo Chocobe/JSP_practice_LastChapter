@@ -17,7 +17,7 @@
 		
 		${error}
 		
-		<form action="/memberSearch.do" method="POST">
+		<form action="memberSearch.do" method="POST">
 			ID : <input type="text" name="id"/>
 			<input type="hidden" name="job" value="update"/>
 			<input type="submit" value="검색"/>
@@ -29,7 +29,7 @@
 		if(member != null) {			
 		%>
 			<h3>회원정보 수정</h3>
-			<form action="/memberUpdate.do" method="POST">
+			<form action="memberUpdate.do" method="POST">
 				ID : <input type="text" name="id" value="${member.id}" readonly/><br/>
 				비밀번호 : <input type="password" name="passwd" value="${member.passwd}"/><br/>
 				이름 : <input type="text" name="name" value="${member.name}"/><br/>

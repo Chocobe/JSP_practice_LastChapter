@@ -23,7 +23,7 @@ public class MemberInsertController implements Controller {
 		// 유효성 체크
 		if(id.isEmpty() || passwd.isEmpty() || name.isEmpty() || mail.isEmpty()) {
 			request.setAttribute("error", "모든 항목을 빠짐없이 입력해 주시기 바랍니다");
-			HttpUtil.forward(request, response, "/memberInsert.do");
+			HttpUtil.forward(request, response, "/memberInsert.jsp");
 			
 			return;
 		}

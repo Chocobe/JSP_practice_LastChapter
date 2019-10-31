@@ -39,6 +39,6 @@ public class MemberUpdateController implements Controller {
 		
 		// 5. Output View 페이지로 이동
 		request.setAttribute("id", id);
-		HttpUtil.forward(request, response, "/memberUpdateOutput.jsp");
+		HttpUtil.forward(request, response, "/result/memberUpdateOutput.jsp");
 	}
 }
